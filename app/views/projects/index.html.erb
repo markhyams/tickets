@@ -1,0 +1,22 @@
+<h4>All Projects</h4>
+
+<% if @projects.size > 0 %>
+  <table class="table">
+    <tr>
+      <th>Name</th>
+      <th>Open Tickets</th>
+      <th>Total Tickets</th>
+    </tr>
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= link_to project.name, project_path(project) %></td>
+        <td></td>
+        <td></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>There are no projects to display.</p>
+<% end %>
+
+<%= link_to '[new project]', new_project_path %>
