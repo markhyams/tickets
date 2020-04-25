@@ -3,5 +3,9 @@
 <p><%= @project.description %>
 
 <p>
-  <%= link_to 'Edit', edit_project_path, class: 'btn btn-secondary' %>
+  <%= link_to 'Edit Project', edit_project_path, class: 'btn btn-secondary' %>
 </p>
+
+<h5>Tickets for this project:</h5>
+
+<%= render 'tickets/tickets_table', tickets: @project.tickets %>
