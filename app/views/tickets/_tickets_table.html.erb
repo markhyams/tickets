@@ -12,7 +12,7 @@
         <td><%= link_to ticket.name, ticket_path(ticket) %></td>
         <td></td>
         <td><%= ticket.status %></td>
-        <td></td>
+        <td><%= list_tags(ticket) %></td>
         <td><%= link_to 'Edit', edit_ticket_path(ticket), class: 'btn btn-sm btn-secondary' %></td>
       </tr>
     <% end %>
