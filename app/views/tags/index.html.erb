@@ -1,0 +1,23 @@
+<h4>Tags</h4>
+
+<% if @tags.size > 0 %>
+  <table class="table">
+    <tr>
+      <th>Name</th>
+      <th>Tickets</th>
+      <th></th>
+    </tr>
+    <% @tags.each do |tag| %>
+      <tr>
+        <td><%= tag.name %></td>
+        <td>0</td>
+        <td><%= link_to 'Edit', edit_tag_path(tag), class: 'btn btn-sm btn-secondary' %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <hr/>
+  <p>There are no tags to display.</p>
+<% end %>
+
+<%= link_to 'New Tag', new_tag_path, class: 'btn btn-success' %>

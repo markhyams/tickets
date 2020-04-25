@@ -14,7 +14,7 @@
     <%= label_tag :project_id %>
     <%= select_tag(
         :project_id,
-        options_for_select(@project_option_tags, selected=@ticket.project_id),
+        options_for_select(@ticket.project_option_tags, selected=@ticket.project_id),
         class: 'form-control'
       )  
     %>
@@ -24,7 +24,7 @@
     <%= label_tag :status %>
     <%= select_tag(
         :status,
-        options_for_select(@statuses, selected=@ticket.status),
+        options_for_select(@ticket.class::ALLOWED_STATUS, selected=@ticket.status),
         class: 'form-control'
       )  
     %>
