@@ -1,15 +1,6 @@
-  <% if !@project.errors.empty? %>
-    <div class="alert alert-danger" role="alert">
-      <p>Please fix the following errors:</p>
-      <ul>
-        <% @project.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'shared/errors', obj: @project %>
   
-  <%= form_for @project do |f| %>
+  <%= form_with model: @project do |f| %>
     <div class='form-group'>
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>
@@ -20,3 +11,12 @@
     </div>
     <%= f.submit(@project.new_record? ? 'Create Project' : 'Update Project', class: 'btn btn-primary')%>
   <% end %>
+
+<% if !@project.new_record? %>
+  <br/>
+  <form id="delete_form" action=<%= project_path(@project) %> method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" class='btn btn-danger' value="Delete">
+  </form>
+<% end %>

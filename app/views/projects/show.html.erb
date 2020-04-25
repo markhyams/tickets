@@ -3,6 +3,5 @@
 <p><%= @project.description %>
 
 <p>
-  <%= link_to '[edit]', edit_project_path %>
-  <%= link_to '[delete]', project_path, method: :delete, confirm: "Are you sure?" %>
+  <%= link_to 'Edit', edit_project_path, class: 'btn btn-secondary' %>
 </p>

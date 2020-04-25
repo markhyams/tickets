@@ -1,35 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Tickets</title>
+    <title>Mark's Tickets App</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">  </head>
-
   <body>
     <header>
-      <div class="navbar">
-        <div class="navbar-inner">
-          <div class="container">
-            <%= render 'layouts/navigation' %>
-          </div>
-        </div>
-      </div>
+      <%= render 'layouts/navigation' %>
     </header>
-    <div id="main" role="main">
-      <div class="container">
+    <main>
+      <div class="container-fluid">
          <div class="row">
-          <div class="span12">
+          <div class="col-md-2">
+          </div>
+          <div class="col-md-8">
+            <br/>
             <%= render 'layouts/messages' %>
             <%= yield %>
           </div>
+          <div class="col-md-2">
+          </div>
         </div>
-        <footer>
-        </footer>
       </div> <!--! end of .container -->
-    </div> <!--! end of #main -->
+    </main>
+    <footer>
+    </footer>
   </body>
 </html>

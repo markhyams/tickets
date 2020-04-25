@@ -1,0 +1,8 @@
+<h4><%= @ticket.name %></h4>
+
+<p><%= @ticket.body %>
+<p>Status: <%= @ticket.status %>
+
+<p>
+  <%= link_to 'Edit', edit_ticket_path, class: 'btn btn-secondary' %>
+</p>

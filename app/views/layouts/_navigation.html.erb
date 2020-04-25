@@ -1,9 +1,23 @@
-<ul class="nav">
-  <li>
-    | Tickets App! |
-  </li>
-  <li>
-    | <%= link_to 'Projects', projects_path %> |
-  </li>
-</ul>
+<nav class="navbar navbar-expand navbar-light bg-light">
+  <a class="navbar-brand" href="#">Pro-Tix!</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
+  <div class="collapse navbar-collapse" id="navbarsExample02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <%= link_to 'Projects', projects_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item active">
+        <%= link_to 'Tickets', tickets_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Tags</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-md-0">
+      <input class="form-control" type="text" placeholder="Search">
+    </form>
+  </div>
+</nav>

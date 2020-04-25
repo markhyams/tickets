@@ -1,4 +1,4 @@
-<h4>All Projects</h4>
+<h4>Projects</h4>
 
 <% if @projects.size > 0 %>
   <table class="table">
@@ -10,8 +10,8 @@
     <% @projects.each do |project| %>
       <tr>
         <td><%= link_to project.name, project_path(project) %></td>
-        <td></td>
-        <td></td>
+        <td>0</td>
+        <td>0</td>
       </tr>
     <% end %>
   </table>
@@ -19,4 +19,4 @@
   <p>There are no projects to display.</p>
 <% end %>
 
-<%= link_to '[new project]', new_project_path %>
+<%= link_to 'New Project', new_project_path, class: 'btn btn-success' %>

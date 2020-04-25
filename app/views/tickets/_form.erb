@@ -1,0 +1,44 @@
+<%= render 'shared/errors', obj: @ticket %>
+
+<%= form_with model: @ticket do |f| %>
+  <div class='form-group'>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :body %>
+    <%= f.text_area :body, class: 'form-control', rows: 6 %>
+  </div>
+
+  <div class='form-group'>
+    <%= label_tag :project_id %>
+    <%= select_tag(
+        :project_id,
+        options_for_select(@project_option_tags, selected=@ticket.project_id),
+        class: 'form-control'
+      )  
+    %>
+  </div>
+
+  <div class='form-group'>
+    <%= label_tag :status %>
+    <%= select_tag(
+        :status,
+        options_for_select(@statuses, selected=@ticket.status),
+        class: 'form-control'
+      )  
+    %>
+  </div>
+
+  <%= f.submit(@ticket.new_record? ? 'Create Ticket' : 'Update Ticket', class: 'btn btn-primary')%>
+<% end %>
+
+<% if !@ticket.new_record? %>
+  <br/>
+  <form id="delete_for" action=<%= ticket_path(@ticket) %> method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" class='btn btn-danger' value="Delete">
+  </form>
+<% end %>
+
