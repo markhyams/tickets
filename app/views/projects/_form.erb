@@ -1,6 +1,6 @@
   <%= render 'shared/errors', obj: @project %>
   
-  <%= form_with model: @project do |f| %>
+  <%= form_with model: @project, local: true do |f| %>
     <div class='form-group'>
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>
@@ -13,10 +13,5 @@
   <% end %>
 
 <% if !@project.new_record? %>
-  <br/>
-  <form id="delete_form" action=<%= project_path(@project) %> method="post">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <input type="hidden" name="_method" value="delete">
-    <input type="submit" class='btn btn-danger' value="Delete">
-  </form>
+  <%= render 'shared/delete_modal', obj: @project %>
 <% end %>
