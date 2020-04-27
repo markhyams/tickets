@@ -2,4 +2,10 @@
 
 <%= render 'tickets_table', tickets: @tickets %>
 
-<%= link_to 'New Ticket', new_ticket_path, class: 'btn btn-success' %>
+<% if logged_in? %>
+  <% if Project.all.size > 0 %>
+    <%= link_to 'New Ticket', new_ticket_path, class: 'btn btn-success' %>
+  <% else %>
+    <div class="alert alert-info">Please create a project before creating a ticket.</div>
+  <% end %>
+<% end %>

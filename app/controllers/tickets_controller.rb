@@ -1,4 +1,6 @@
 class TicketsController < ApplicationController
+  before_action :require_user, except: [:index, :show]
+  before_action :require_projects, except: [:index, :show]
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -10,7 +12,11 @@ class TicketsController < ApplicationController
   end
 
   def new
-    @ticket = Ticket.new
+    if Project.all.size == 0
+      redirect_to tickets_path
+    else
+      @ticket = Ticket.new
+    end
   end
 
   def create
@@ -51,8 +57,14 @@ class TicketsController < ApplicationController
 
   private
 
-  def set_ticket 
-    @ticket = Ticket.find(params[:id])
+  def set_ticket
+    query = Ticket.where(id: params[:id])
+    if query.first
+      @ticket = query.first
+    else
+      flash['danger'] = 'Ticket could not be found.'
+      redirect_to tickets_path
+    end
   end
 
   def ticket_params

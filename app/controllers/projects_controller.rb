@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  before_action :require_user, except: [:show, :index]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -46,7 +47,13 @@ class ProjectsController < ApplicationController
   private
 
   def set_project
-    @project = Project.find(params[:id])
+    query = Project.where(id: params[:id])
+    if query.first
+      @project = query.first
+    else
+      flash['danger'] = 'Project could not be found.'
+      redirect_to projects_path
+    end
   end
 
   def project_params

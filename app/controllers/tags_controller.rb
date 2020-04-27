@@ -1,9 +1,12 @@
 class TagsController < ApplicationController
-  before_action :set_tag, only: [:edit, :update, :destroy]
+  before_action :require_user, except: [:index, :show]
+  before_action :set_tag, only: [:show, :edit, :update, :destroy]
 
   def index
     @tags = Tag.all
   end
+
+  def show; end
 
   def new
     @tag = Tag.new
@@ -48,6 +51,12 @@ class TagsController < ApplicationController
   end
 
   def set_tag
-    @tag = Tag.find(params[:id])
+    query = Tag.where(id: params[:id])
+    if query.first
+      @tag = query.first
+    else
+      flash['danger'] = 'Tag could not be found.'
+      redirect_to tags_path
+    end
   end
 end

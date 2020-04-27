@@ -13,7 +13,11 @@
         <td></td>
         <td><%= ticket.status %></td>
         <td><%= list_tags(ticket) %></td>
-        <td><%= link_to 'Edit', edit_ticket_path(ticket), class: 'btn btn-sm btn-secondary' %></td>
+        <td>
+          <% if logged_in? %>
+            <%= link_to 'Edit', edit_ticket_path(ticket), class: 'btn btn-sm btn-secondary' %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </table>

@@ -16,8 +16,17 @@
         <%= link_to 'Tags', tags_path, class: 'nav-link' %>
       </li>
     </ul>
+
     <form class="form-inline my-2 my-md-0">
       <input class="form-control" type="text" placeholder="Search">
     </form>
+
+    <% if logged_in? %>
+      <div class='navbar-text'> Logged In As: <%= current_user.username %> </div>
+      <%= link_to 'Log Out', logout_path, class: 'btn btn-outline-dark btn-sm' %>
+    <% else %>
+      <%= link_to 'Log In', login_path, class: 'btn btn-outline-dark btn-sm' %>
+      <%= link_to 'Register', register_path, class: 'btn btn-outline-dark btn-sm' %>
+    <% end %>
   </div>
 </nav>

@@ -11,7 +11,11 @@
       <tr>
         <td><%= tag.name %></td>
         <td>0</td>
-        <td><%= link_to 'Edit', edit_tag_path(tag), class: 'btn btn-sm btn-secondary' %></td>
+        <td>
+          <% if logged_in? %>
+            <%= link_to 'Edit', edit_tag_path(tag), class: 'btn btn-sm btn-secondary' %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </table>
@@ -20,6 +24,6 @@
   <p>There are no tags to display.</p>
 <% end %>
 
-<%= link_to 'New Tag', new_tag_path, class: 'btn btn-success' %>
-
-<br/>
+<% if logged_in? %>
+  <%= link_to 'New Tag', new_tag_path, class: 'btn btn-success' %>
+<% end %>

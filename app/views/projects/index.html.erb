@@ -16,7 +16,10 @@
     <% end %>
   </table>
 <% else %>
+  <hr/>
   <p>There are no projects to display.</p>
 <% end %>
 
-<%= link_to 'New Project', new_project_path, class: 'btn btn-success' %>
+<% if logged_in? %>
+  <%= link_to 'New Project', new_project_path, class: 'btn btn-success' %>
+<% end %>
