@@ -1,13 +1,24 @@
 <h4><%= @ticket.name %></h4>
 
 <p><%= @ticket.body %>
-<p>Status: <%= @ticket.status %>
-<p>Tags: <%= list_tags(@ticket) %>
-<p>Creator: <%= @ticket.creator.username %>
-<p>Assignee: <%= show_assignee(@ticket) %>
+<p><b>Tags:</b> <%= list_tags(@ticket) %>
 
 <p>
   <% if logged_in? %>
     <%= link_to 'Edit Ticket', edit_ticket_path(@ticket), class: 'btn btn-secondary' %>
   <% end %>
 </p>
+
+<table class="table">
+  <tr>
+    <th>Status</th>
+    <th>Creator</th>
+    <th>Assignee</th>
+  </tr>
+  <tr>
+    <td><%= @ticket.status %></td>
+    <td><%= @ticket.creator.username %></td>
+    <td><%= show_assignee(@ticket) %></td>
+  </tr>
+</table>
+
