@@ -24,6 +24,8 @@ class TicketsController < ApplicationController
     project = Project.find(params[:project_id])
     @ticket.status = params[:status]
     @ticket.creator = current_user
+    @ticket.assignee = assignee_from_params(params)
+    
 
     if project.tickets << @ticket
       flash['success'] = 'Ticket created.'
@@ -39,6 +41,7 @@ class TicketsController < ApplicationController
   def update
     @ticket.project_id = params[:project_id]
     @ticket.status = params[:status]
+    @ticket.assignee = assignee_from_params(params)
 
     if @ticket.update(ticket_params)
       flash['success'] = 'Ticket updated.'
@@ -70,5 +73,10 @@ class TicketsController < ApplicationController
 
   def ticket_params
     params.require(:ticket).permit(:name, :body, tag_ids: [])
+  end
+
+  def assignee_from_params(params)
+    assignee = params[:assignee]
+    User.where(id: assignee).first
   end
 end

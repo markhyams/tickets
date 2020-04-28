@@ -3,6 +3,7 @@ class Ticket < ApplicationRecord
   ALLOWED_STATUS = ['new', 'blocked', 'in_progress', 'fixed']
   belongs_to :project
   belongs_to :creator, class_name: 'User', foreign_key: 'user_id'
+  belongs_to :assignee, class_name: 'User', foreign_key: 'assignee', optional: true
 
 
   validates :name, presence: true
@@ -14,5 +15,14 @@ class Ticket < ApplicationRecord
 
   def project_option_tags
     Project.option_tags
+  end
+
+  def user_option_tags
+    User.option_tags
+  end
+
+  def assignee_id
+    @assignee ||= self.assignee
+    @assignee ? @assignee.id : ""
   end
 end

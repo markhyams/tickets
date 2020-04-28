@@ -4,6 +4,7 @@
 <p>Status: <%= @ticket.status %>
 <p>Tags: <%= list_tags(@ticket) %>
 <p>Creator: <%= @ticket.creator.username %>
+<p>Assignee: <%= show_assignee(@ticket) %>
 
 <p>
   <% if logged_in? %>
