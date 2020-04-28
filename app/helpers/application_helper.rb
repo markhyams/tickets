@@ -1,4 +1,10 @@
 module ApplicationHelper
+  def show_updated_at(obj)
+    return '' if obj.updated_at == obj.created_at
+    
+    "Updated #{time_ago_in_words(obj.updated_at)} ago."
+  end
+
   def list_tags(ticket_obj)
     str = ticket_obj.tags.map { |tag| tag.name }.join(', ')
     str == "" ? 'none' : str

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :tickets
+  has_many :comments
 
   validates :username, presence: true
   validates :email, presence: true, uniqueness: true

@@ -4,6 +4,7 @@ class Ticket < ApplicationRecord
   belongs_to :project
   belongs_to :creator, class_name: 'User', foreign_key: 'user_id'
   belongs_to :assignee, class_name: 'User', foreign_key: 'assignee', optional: true
+  has_many :comments
 
 
   validates :name, presence: true

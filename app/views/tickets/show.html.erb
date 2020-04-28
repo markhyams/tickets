@@ -22,3 +22,27 @@
   </tr>
 </table>
 
+<h4>Comments</h4>
+
+<% @ticket.comments.each do |comment| %>
+  <div class="card">
+    <div class="card-body">
+      <p class="card-text"><%= comment.body %></p>
+      <small>
+        <p>
+          Posted by <%= comment.creator.username %> 
+          <%= time_ago_in_words(comment.created_at) %> ago.
+          <%= show_updated_at(comment) %>
+        </p>
+        <%= link_to 'edit', edit_ticket_comment_path(@ticket, comment), class: 'btn btn-sm btn-outline-secondary'%>
+      </small>
+    </div>
+  </div>
+  <br/>
+<% end %>
+<hr/>
+
+<% if logged_in? %>
+  <%= render 'comments/form' %>
+<% end %>
+

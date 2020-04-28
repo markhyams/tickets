@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   
   resources :users, only: [:create]
   resources :projects
-  resources :tickets
+  resources :tickets do
+    resources :comments, except: [:index, :new, :show]
+  end
   resources :tags
 end
