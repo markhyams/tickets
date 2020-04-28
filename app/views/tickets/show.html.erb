@@ -2,6 +2,8 @@
 
 <p><%= @ticket.body %>
 <p>Status: <%= @ticket.status %>
+<p>Tags: <%= list_tags(@ticket) %>
+<p>Creator: <%= @ticket.creator.username %>
 
 <p>
   <% if logged_in? %>

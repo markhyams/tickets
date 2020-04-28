@@ -23,6 +23,7 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new(ticket_params)
     project = Project.find(params[:project_id])
     @ticket.status = params[:status]
+    @ticket.creator = current_user
 
     if project.tickets << @ticket
       flash['success'] = 'Ticket created.'
@@ -41,7 +42,7 @@ class TicketsController < ApplicationController
 
     if @ticket.update(ticket_params)
       flash['success'] = 'Ticket updated.'
-      redirect_to tickets_path
+      redirect_to ticket_path(@ticket)
     else
       render :edit
     end

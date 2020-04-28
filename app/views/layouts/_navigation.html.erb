@@ -22,11 +22,11 @@
     </form>
 
     <% if logged_in? %>
-      <div class='navbar-text'> Logged In As: <%= current_user.username %> </div>
+      <div class='navbar-text mx-1'> Logged In As: <%= current_user.username %> </div>
       <%= link_to 'Log Out', logout_path, class: 'btn btn-outline-dark btn-sm' %>
     <% else %>
-      <%= link_to 'Log In', login_path, class: 'btn btn-outline-dark btn-sm' %>
-      <%= link_to 'Register', register_path, class: 'btn btn-outline-dark btn-sm' %>
+      <%= link_to 'Log In', login_path, class: 'btn btn-outline-dark btn-sm mx-1' %>
+      <%= link_to 'Register', register_path, class: 'btn btn-outline-dark btn-sm mx-1' %>
     <% end %>
   </div>
 </nav>
