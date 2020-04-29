@@ -1,5 +1,7 @@
 <h4>Tickets</h4>
 
+<%= render 'search_form' %>
+
 <%= render 'tickets_table', tickets: @tickets %>
 
 <% if logged_in? %>

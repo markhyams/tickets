@@ -4,7 +4,17 @@ class TicketsController < ApplicationController
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tickets = Ticket.all
+    project_id = params[:project]
+    status = params[:status]
+    tickets = Ticket.all
+
+    if project_id && status
+      tickets = tickets.where("project_id = ? ", project_id) if project_id != ""
+      tickets = tickets.where("status = ? ", status) if status != ""
+    end
+
+    @params = params
+    @tickets = tickets
   end
 
   def show
