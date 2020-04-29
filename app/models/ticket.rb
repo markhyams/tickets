@@ -13,6 +13,13 @@ class Ticket < ApplicationRecord
 
   validates :status, acceptance: { accept: ALLOWED_STATUS, message: 'Not a valid ticket status.'}
 
+  def project_name
+    Project.find(self.project_id).name
+  end
+
+  def self.project_option_tags
+    Project.option_tags
+  end
 
   def project_option_tags
     Project.option_tags

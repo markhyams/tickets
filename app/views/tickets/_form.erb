@@ -35,13 +35,13 @@
     <%= select_tag(
         :assignee,
         options_for_select(@ticket.user_option_tags, selected = @ticket.assignee_id),
-        include_blank: true,
+        include_blank: 'Choose assignee...',
         class: 'form-control'
       )  
     %>
   </div>
 
-  <div class='form-group'>
+  <div class='form-group row'>
     <%= f.label :tags %>
     <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name do |cb| %>
       <div class='form-check'>

@@ -1,7 +1,9 @@
 <h4><%= @ticket.name %></h4>
 
-<p><%= @ticket.body %>
-<p><b>Tags:</b> <%= list_tags(@ticket) %>
+<p><%= @ticket.body %></p>
+<p><b>Tags:</b> <%= list_tags(@ticket) %></p>
+<p><b>Project:</b> <%= link_to @ticket.project_name, project_path(@ticket.project_id) %></p>
+
 
 <p>
   <% if logged_in? %>
