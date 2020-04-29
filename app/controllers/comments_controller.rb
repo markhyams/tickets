@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, except: [:create]
+  before_action :set_ticket, except: [:destroy]
   before_action :require_user
   before_action :require_same_user, except: [:create]
 
@@ -8,21 +9,36 @@ class CommentsController < ApplicationController
     @comment.creator = current_user
     @comment.ticket_id = params[:ticket_id]
 
-    @comment.save
-    redirect_to "/tickets/#{params[:ticket_id]}"
+    msg = ''
+
+    if @ticket.update(status: params[:status])
+      msg += 'Ticket status updated.'
+    end
+
+    if @comment.save
+      msg += ' Comment created.'
+      flash['success'] = msg
+      redirect_to ticket_path(@ticket)
+    else
+      render 'tickets/show'
+    end
   end
 
   def edit
-    @ticket = Ticket.find(params[:ticket_id])
   end
 
   def update
-    @ticket = Ticket.find(params[:ticket_id])
     @comment.update(body: params[:comment][:body])
+    msg = ''
+
+    if @ticket.update(status: params[:status])
+      msg += 'Ticket status updated.'
+    end
 
     if @comment.save
-      flash[:success] = 'Comment updated.'
-      redirect_to "/tickets/#{params[:ticket_id]}"
+      msg += ' Comment updated.'
+      flash['success'] = msg
+      redirect_to ticket_path(@ticket)
     else
       render :edit
     end
@@ -40,6 +56,10 @@ class CommentsController < ApplicationController
 
   def set_comment
     @comment = Comment.find(params[:id])
+  end
+
+  def set_ticket
+    @ticket = Ticket.find(params[:ticket_id])
   end
 
   def require_same_user

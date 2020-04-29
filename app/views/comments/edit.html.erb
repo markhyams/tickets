@@ -1,13 +1,5 @@
 <h5>Edit Comment</h5>
 
-<%= render 'shared/errors', obj: @comment %>
 
-<%= form_with model: @comment, url: ticket_comment_path(@ticket, @comment), local: true do |f| %>
-  <div class='form-group'>
-    <%= f.text_area :body, class: 'form-control', rows: 6 %>
-  </div>
 
-  <%= f.submit(@comment.new_record? ? 'Add Comment' : 'Update Comment', class: 'btn btn-primary')%>
-<% end %>
-
-<%= render 'shared/delete_modal', obj: @comment %>
+<%= render 'form' %>

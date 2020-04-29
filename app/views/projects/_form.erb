@@ -9,7 +9,9 @@
       <%= f.label :description %>
       <%= f.text_area :description, class: 'form-control', rows: 6 %>
     </div>
-    <%= f.submit(@project.new_record? ? 'Create Project' : 'Update Project', class: 'btn btn-primary')%>
+    <div class='form-group'>
+      <%= f.submit(@project.new_record? ? 'Create Project' : 'Update Project', class: 'btn btn-primary')%>
+    </div>
   <% end %>
 
 <% if !@project.new_record? %>

@@ -1,9 +1,27 @@
-<h5>Add a comment:</h5>
+<%= render 'shared/errors', obj: @comment %>
 
-<%= form_with model: @comment, url: ticket_comments_path(@ticket), local: true do |f| %>
+<%= form_with model: [@ticket, @comment], local: true do |f| %>
   <div class='form-group'>
     <%= f.text_area :body, class: 'form-control', rows: 6 %>
   </div>
 
-  <%= f.submit(@comment.new_record? ? 'Add Comment' : 'Update Comment', class: 'btn btn-sm btn-outline-primary')%>
+  <div class="form-group">
+    <%= label_tag :status, "Update \"#{@ticket.status}\" status (optional):"%>
+    <%= select_tag(
+        :status,
+        options_for_select(@ticket.class::ALLOWED_STATUS),
+        include_blank: 'Do not update',
+        class: 'form-control-sm'
+      )  
+    %>
+  </div>
+
+  <div class='form-group pb-4'>
+    <%= f.submit(@comment.new_record? ? 'Add Comment' : 'Update Comment', class: 'btn btn-sm btn-outline-primary')%>
+  </div>
 <% end %>
+
+<% if !@comment.new_record? %>
+  <%= render 'shared/delete_modal', obj: @comment %>
+<% end %>
+

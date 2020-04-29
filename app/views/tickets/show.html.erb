@@ -26,6 +26,8 @@
 
 <h4>Comments</h4>
 
+<%= render 'shared/errors', obj: @comment %>
+
 <% @ticket.comments.order(created_at: :asc).each do |comment| %>
   <div class="card">
     <div class="card-body">
@@ -47,6 +49,7 @@
 <hr/>
 
 <% if logged_in? %>
+  <h5>Add a comment</h5>
   <%= render 'comments/form' %>
 <% end %>
 

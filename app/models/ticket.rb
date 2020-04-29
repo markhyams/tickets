@@ -4,14 +4,14 @@ class Ticket < ApplicationRecord
   belongs_to :project
   belongs_to :creator, class_name: 'User', foreign_key: 'user_id'
   belongs_to :assignee, class_name: 'User', foreign_key: 'assignee', optional: true
-  has_many :comments
+  has_many :comments, dependent: :delete_all
 
 
   validates :name, presence: true
   validates :body, presence: true
   validates :status, presence: true
 
-  validates :status, acceptance: { accept: ALLOWED_STATUS, message: 'Not a valid ticket status.'}
+  validates :status, acceptance: { accept: ALLOWED_STATUS, message: 'not valid.'}
 
   def project_name
     Project.find(self.project_id).name

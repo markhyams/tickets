@@ -1,11 +1,13 @@
 <h4>Tickets</h4>
 
-<%= render 'search_form' %>
+<% if @tickets.klass.count > 0 %>
+  <%= render 'search_form' %>
+<% end %>
 
 <%= render 'tickets_table', tickets: @tickets %>
 
 <% if logged_in? %>
-  <% if Project.all.size > 0 %>
+  <% if Project.count > 0 %>
     <%= link_to 'New Ticket', new_ticket_path, class: 'btn btn-success' %>
   <% else %>
     <div class="alert alert-info">Please create a project before creating a ticket.</div>

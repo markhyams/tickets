@@ -13,12 +13,11 @@
     <div class="form-group mx-2">
       <%= select_tag(
           :status,
-          options_for_select(@tickets.klass::ALLOWED_STATUS, select= @params[:status]),
+          options_for_select(@tickets.klass::ALLOWED_STATUS, selected= @params[:status]),
           include_blank: 'Choose status...',
           class: 'form-control-sm'
         )  
       %>
-
     </div>
 
     <button type="submit" class="mx-2 btn btn-sm btn-outline-secondary">Search</button>
