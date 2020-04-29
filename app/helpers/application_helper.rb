@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def same_user(comment_obj)
+    current_user == comment_obj.creator
+  end
+
   def show_updated_at(obj)
     return '' if obj.updated_at == obj.created_at
     
