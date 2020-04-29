@@ -1,6 +1,6 @@
 <h4>Tags</h4>
 
-<% if @tags.size > 0 %>
+<% if @tags.values.size > 0 %>
   <table class="table">
     <tr>
       <th>Name</th>
@@ -9,11 +9,11 @@
     </tr>
     <% @tags.each do |tag| %>
       <tr>
-        <td><%= tag.name %></td>
-        <td>0</td>
+        <td><%= tag['name'] %></td>
+        <td><%= link_to tag['count'], tickets_path(tag: tag['id'], project: '', status: '') %></td>
         <td>
           <% if logged_in? %>
-            <%= link_to 'Edit', edit_tag_path(tag), class: 'btn btn-sm btn-secondary' %>
+            <%= link_to 'Edit', edit_tag_path(tag['id']), class: 'btn btn-sm btn-secondary' %>
           <% end %>
         </td>
       </tr>

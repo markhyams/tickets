@@ -6,11 +6,13 @@ class TicketsController < ApplicationController
   def index
     project_id = params[:project]
     status = params[:status]
+    tag = params[:tag]
     tickets = Ticket.all
 
     if project_id && status
       tickets = tickets.where("project_id = ? ", project_id) if project_id != ""
       tickets = tickets.where("status = ? ", status) if status != ""
+      tickets = tickets.joins(:tags_tickets).where(tags_tickets: {tag_id: tag}) if tag != "" 
     end
 
     @params = params
