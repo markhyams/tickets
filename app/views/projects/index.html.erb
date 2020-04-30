@@ -4,14 +4,14 @@
   <table class="table">
     <tr>
       <th>Name</th>
-      <th>Open Tickets</th>
+      <th>Created</th>
       <th>Total Tickets</th>
     </tr>
     <% @projects.each do |project| %>
       <tr>
         <td><%= link_to project.name, project_path(project) %></td>
-        <td>0</td>
-        <td>0</td>
+        <td><%= time_tag project.created_at %></td>
+        <td><%= project.tickets.count %></td>
       </tr>
     <% end %>
   </table>
