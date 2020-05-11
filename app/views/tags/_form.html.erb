@@ -9,7 +9,7 @@
   <%= f.submit(@tag.new_record? ? 'Create Tag' : 'Update Tag', class: 'btn btn-primary')%>
 <% end %>
 
-
+<br/>
 <% if !@tag.new_record? %>
   <%= render 'shared/delete_modal', obj: @tag %>
 <% end %>
